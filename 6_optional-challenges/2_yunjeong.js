@@ -1,8 +1,7 @@
 function areThereDuplicates(...args) {
-  let arr = args.concat();
   let frequency = {};
   
-  for (let val of arr) {
+  for (let val of args) {
     if (frequency[val]) {
       return true;
     }
