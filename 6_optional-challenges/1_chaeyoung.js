@@ -44,4 +44,3 @@ function sameFrequency(num1, num2) {
 
   return true;
 }
-console.log(111, sameFrequency(123, 312));
