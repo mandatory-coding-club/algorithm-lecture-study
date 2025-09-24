@@ -31,8 +31,12 @@ function areThereDuplicates1(...args) {
 
 function areThereDuplicates2(...args) {
   args.sort();
-  for (let i = 0; i < args.length; i++) {
+  for (let i = 0; i < args.length - 1; i++) {
     if (args[i] === args[i + 1]) return true;
   }
   return false;
 }
+
+console.log(areThereDuplicates2(1, 2, 3));
+console.log(areThereDuplicates2(1, 2, 2));
+console.log(areThereDuplicates2("a", "b", "c", "a"));
