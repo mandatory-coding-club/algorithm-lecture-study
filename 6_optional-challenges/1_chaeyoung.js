@@ -21,8 +21,8 @@
 //  2-3. 확인
 
 function sameFrequency(num1, num2) {
-  digits1 = num1.toString().split("").map(Number);
-  digits2 = num2.toString().split("").map(Number);
+  digits1 = num1.toString();
+  digits2 = num2.toString();
 
   if (digits1.length !== digits2.length) return false;
 
