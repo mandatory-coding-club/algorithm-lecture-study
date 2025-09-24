@@ -22,16 +22,17 @@
 // 3. 이때 현재 합과 최대합을 비교하여 최대합을 갱신한다.
 
 function maxSubarraySum(arr, n) {
+  if (n > arr.length) return null;
+  
   let maxSum = 0;
-  let tempSum = 0;
 
-  for (let i = 0; i < arr.length - n + 1; i++) {
-    if (i === 0) {
-      tempSum = arr[i] + arr[i + 1];
-    } else {
-      tempSum = tempSum + arr[i + 1] - arr[i - 1];
-    }
-    maxSum = Math.max(maxSum, tempSum);
+  for (let i = 0; i < n; i++) {
+    maxSum += arr[i];
   }
+
+  for (let i = 0; i < arr.length - n; i++) {
+    maxSum = Math.max(maxSum, maxSum - arr[i] + arr[i + n]);
+  }
+
   return maxSum;
 }
