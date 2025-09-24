@@ -23,10 +23,10 @@ function same(arr1, arr2) {
   if (arr1.length !== arr2.length) return false;
 
   for (let i = 0; i < arr1.length; i++) {
-    let index1 = arr1[i];
-    let index2 = arr2[i];
-    frequencyCounter1[index1] = (frequencyCounter1[index1] || 0) + 1;
-    frequencyCounter2[index2] = (frequencyCounter2[index2] || 0) + 1;
+    let key1 = arr1[i];
+    let key2 = arr2[i];
+    frequencyCounter1[key1] = (frequencyCounter1[key1] || 0) + 1;
+    frequencyCounter2[key2] = (frequencyCounter2[key2] || 0) + 1;
   }
 
   for (let key in frequencyCounter1) {
