@@ -14,9 +14,10 @@ function maxSubarraySum(arr, width) {
     }
 
     //순회
+    let tempSum = maxSum;
     for(let i = width; i < arr.length; i++)
     {
-        tempSum = maxSum - arr[i - width] + arr[i];
+        tempSum = tempSum - arr[i - width] + arr[i];
         maxSum = Math.max(maxSum, tempSum);
     }
     return maxSum;
