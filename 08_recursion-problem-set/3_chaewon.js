@@ -14,3 +14,13 @@ function helper(arr)
 
 console.log(helper([1,2,3])) // 6
 console.log(helper([1,2,3,10])) // 60
+
+//헬퍼 함수를 사용하지 않는 다른 방법
+function productOfArray2(arr)
+{
+    if(arr.length === 0) return 1;
+    return arr[0] * productOfArray2(arr.splice(1))
+}
+
+console.log(productOfArray2([1,2,3])) // 6
+console.log(productOfArray2([1,2,3,10])) // 60
