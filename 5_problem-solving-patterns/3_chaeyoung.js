@@ -43,16 +43,11 @@ function sumZero(arr) {
 // 2. 객체를 순회하며 값이 1인 것의 개수를 센다.
 
 function countUniqueValues(arr) {
-  uniqueCounter = {};
-  let uniqueValues = 0;
+  let uniqueCounter = {};
 
   for (let i = 0; i < arr.length; i++) {
     uniqueCounter[arr[i]] = (uniqueCounter[arr[i]] || 0) + 1;
   }
 
-  for (let value in uniqueCounter) {
-    uniqueCounter[value] === 1 ? uniqueValues++ : null;
-  }
-
-  return uniqueValues;
+  return Object.keys(uniqueCounter).length;
 }
