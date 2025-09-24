@@ -11,8 +11,8 @@ function areThereDuplicates(...args) {
     //다중 포인터 패턴 -> 정렬 후 두 포인터를 이용해 중복 값이 있는지 확인
 
     const sortedArgs = args.sort();
-    for(let i= 0, j = 1; j < sortedArgs.length; i++, j++) {
-        if(sortedArgs[i] === sortedArgs[j]) return true;
+    for(let i= 0; i < sortedArgs.length - 1; i++) {
+        if(sortedArgs[i] === sortedArgs[i + 1]) return true;
     }
     return false;
 }
