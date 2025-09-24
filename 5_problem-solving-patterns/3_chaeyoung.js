@@ -25,6 +25,7 @@ function sumZero(arr) {
     else if (sum > 0) right--;
     else left++;
   }
+  return undefined
 }
 
 // 3-2
