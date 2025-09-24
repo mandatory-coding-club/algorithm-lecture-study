@@ -1,3 +1,7 @@
+// 주어진 정수 배열에서 num 길이를 가진 하위 배열의 최대 합 구하기
+// Solution
+// sliding window
+// 고정 길이의 윈도우를 돌며 maxSum 계산
 function maxSubarraySum(arr, num){
   if (arr.length < num) { return null; }
   let start = 0;
