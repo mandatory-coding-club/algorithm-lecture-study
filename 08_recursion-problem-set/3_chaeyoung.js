@@ -5,7 +5,8 @@
 // productOfArray([1, 2, 3, 10]); // 60
 
 function productOfArraySlice(arr) {
-  if (arr.length === 1) return 1;
+  if (arr.length === 0) return 1;
+  if (arr.length === 1) return arr[0];
 
   return arr[arr.length - 1] * productOfArraySlice(arr.slice(0, -1));
 }
@@ -23,3 +24,5 @@ console.log(productOfArraySlice([1, 2, 3])); // 6
 console.log(productOfArraySlice([1, 2, 3, 10])); // 60
 console.log(productOfArrayPop([1, 2, 3])); // 6
 console.log(productOfArrayPop([1, 2, 3, 10])); // 60
+console.log(productOfArraySlice([3])); // 3
+console.log(productOfArrayPop([3])); // 3
