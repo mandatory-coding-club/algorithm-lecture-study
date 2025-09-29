@@ -4,8 +4,9 @@
 
 function capitalizeFirst(arr)
 {
+    if(arr.length === 0) return [];
     //배열의 마지막 원소인 경우(배열 길이 1) if문 처리
-    if(arr.length === 1) return [arr[0].charAt(0).toUpperCase() + arr[0].slice(1)];
+    //if(arr.length === 1) return [arr[0].charAt(0).toUpperCase() + arr[0].slice(1)];
 
     return [arr[0].charAt(0).toUpperCase() + arr[0].slice(1)].concat(capitalizeFirst(arr.slice(1)));
 } 
