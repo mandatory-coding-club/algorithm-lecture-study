@@ -26,7 +26,7 @@ function flatten(arr) {
 
 function flattenByReduce(arr) {
   return arr.reduce((acc, val) => {
-    return Array.isArray(val) ? acc.concat(flatten(val)) : acc.concat(val);
+    return Array.isArray(val) ? acc.concat(flattenByReduce(val)) : acc.concat(val);
   }, []);
 }
 
