@@ -8,11 +8,11 @@ function nestedEvenSum(obj) {
     let values = Object.values(input);
     if (values.length === 0) return;
 
-    for (let i = 0; i < values.length; i++) {
-      if (typeof values[i] === "number" && values[i] % 2 === 0) {
-        sum += values[i];
-      } else if (typeof values[i] === "object") {
-        helper(values[i]);
+    for (let key in values) {
+      if (typeof values[key] === "number" && values[key] % 2 === 0) {
+        sum += values[key];
+      } else if (typeof values[key] === "object") {
+        helper(values[key]);
       }
     }
   }
