@@ -1,6 +1,6 @@
 // 합병 정렬 구현하기
 
-function mergeSort(arr1, arr2)
+function merge(arr1, arr2)
 {
     let res = [];
     let i = 0;
@@ -17,7 +17,6 @@ function mergeSort(arr1, arr2)
             res.push(arr2[j]);
             j++;
         }
-        console.log(res);
     }
     if(i === arr1.length) res.push(...arr2.slice(j));
     else res.push(...arr1.slice(i));
@@ -27,8 +26,16 @@ function mergeSort(arr1, arr2)
 
 function mergeSort(arr)
 {
-    if(arr.length >= 2) return; //반을 쪼개서 병합한다
+    //반을 쪼개서 병합. 종료 조건이 함수의 시작점이라고 생각하자!
+    if(arr.length <= 1) return arr; 
+
+    let mid = Math.floor(arr.length/2);
+    let left = mergeSort(arr.slice(0, mid));
+    let right = mergeSort(arr.slice(mid))
+    //console.log(left, right);
+
+    return merge(left, right);
 }
 
-console.log(mergeSort([1, 2, 4, 5], [-1, 0, 3, 8, 9, 10]));
-//console.log(mergeSort([15, 67, 45, 434, 224, 12, -12]));
+console.log(mergeSort([1, 4, 2, 5, -1, 0, 9, 7, 8, 10]));
+console.log(mergeSort([15, 67, 45, 434, 224, 12, -12]));
