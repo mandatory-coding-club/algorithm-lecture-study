@@ -12,12 +12,15 @@
 
 function selectionSort(arr) {
   for (let i = 0; i < arr.length - 1; i++) {
+    let minIndex = i;
     for (let j = i + 1; j < arr.length; j++) {
-      console.log(i, arr, arr[i], arr[j]);
-      if (arr[i] > arr[j]) {
-        [arr[i], arr[j]] = [arr[j], arr[i]];
+      if (arr[minIndex] > arr[j]) {
+        minIndex = j;
       }
     }
+    [arr[i], arr[minIndex]] = [arr[minIndex], arr[i]];
   }
   return arr;
 }
+
+console.log(selectionSort([5, 3, 8, 4, 2])); // [2, 3, 4, 5, 8]
