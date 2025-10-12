@@ -8,17 +8,16 @@ function insertionSort(arr)
         for(let j = 0; j < i; j ++)
         {
             //비교 요소가 앞의 요소보다 크거나 같으면 : 적절
-            if(arr[j] <= val)
+            if(arr[j] > val)
             {
-                console.log(arr);
+                arr.splice(i, 1);
+                arr.splice(j, 0, val);
+                break;
             }
             //비교 요소가 앞의 요소보다 작다면 : 삽입
             else
             {
-                arr.splice(i, 1);
-                arr.splice(j, 0, val);
-                console.log(arr);
-                break;
+                continue;
             }
         }
 
