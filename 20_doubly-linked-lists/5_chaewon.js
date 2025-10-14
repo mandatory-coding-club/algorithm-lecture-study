@@ -114,7 +114,9 @@ class DoublyLinkedList
         targetNode.next.prev = targetNode.prev;
         targetNode.prev = null;
         targetNode.next = null;
-        
+
+        this.length--;
+
         return targetNode;
     }
 }
