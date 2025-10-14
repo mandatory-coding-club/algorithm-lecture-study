@@ -18,6 +18,7 @@ class Queue
         this.last = null;
         this.length = 0;
     }
+    //push
     enqueue(val)
     {
         let newNode = new Node(val);
@@ -35,6 +36,7 @@ class Queue
         this.length++;
         return this;
     }
+    //shift
     dequeue()
     {
         let res = this.first;
