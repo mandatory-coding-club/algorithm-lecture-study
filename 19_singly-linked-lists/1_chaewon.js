@@ -87,15 +87,14 @@ class SingleLinkedList
         //리스트가 빈 경우
         if(this.length === 0)
         {
-            this.head = newNode;
             this.tail = newNode;
         }
         //일반적인 경우
         else
         {
             newNode.next = this.head;
-            this.head = newNode;
         }
+        this.head = newNode;
         this.length ++;
         return true;
     }
