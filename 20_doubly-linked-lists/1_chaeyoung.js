@@ -89,8 +89,8 @@ class DoublyLinkedList {
     const newNode = new Node(val);
 
     if (!this.head) {
-      this.head = val;
-      this.tail = val;
+      this.head = newNode;
+      this.tail = newNode;
     } else {
       this.head.prev = newNode;
       newNode.next = this.head;
@@ -172,16 +172,16 @@ class DoublyLinkedList {
     if (index === 0) return this.shift();
     if (index === this.length - 1) return this.pop();
 
-    const removed = get(index);
+    const removedNode = get(index);
 
-    removed.prev.next = removed.next;
-    removed.next.prev = removed.prev;
-    removed.prev = null;
-    removed.next = null;
+    removedNode.prev.next = removedNode.next;
+    removedNode.next.prev = removedNode.prev;
+    removedNode.prev = null;
+    removedNode.next = null;
 
     this.length--;
 
-    return removed;
+    return removedNode;
   }
 
   // 확인용
