@@ -7,62 +7,30 @@
 * 트리는 **사이클(cycle)** 이 없는 구조다.
   즉, 한 노드에서 시작해 다시 자기 자신으로 돌아올 수 없다.
 
-## 이진 트리(Binary Tree)
+## 이진 탐색 트리 (Binary Search Tree)
+BST는 각 노드가 최대 두 개의 자식 노드를 가짐  
+왼쪽은 **작은 값**, 오른쪽은 **큰 값**이 위치하도록 구성된 트리 구조
 
-* 각 노드는 **최대 2개의 자식 노드**를 가진다.
-* 왼쪽 자식(`left`)과 오른쪽 자식(`right`)으로 구분된다.
-
-```
-       10
-     /    \
-    5      15
-   / \    /  \
-  2   7  12  20
-```
-
-## 이진 탐색 트리(Binary Search Tree, BST)
-
-이진 탐색 트리는 **이진 트리의 한 종류**로,
-데이터가 **특정한 규칙**을 가지고 저장된다.
-
-### 규칙
-
-1. 각 노드는 **하나의 값(value)** 을 가진다.
-2. 왼쪽 서브트리의 모든 값은 **현재 노드보다 작다**.
-3. 오른쪽 서브트리의 모든 값은 **현재 노드보다 크다**.
-
-
-### BST의 장점
-
-* 데이터를 **정렬된 형태**로 유지한다.
-* **검색(Search)**, **삽입(Insert)**, **삭제(Delete)** 가
-  평균적으로 **O(log N)** 의 시간 복잡도를 가진다.
-  (단, 트리가 한쪽으로 기울어진 경우엔 O(N)까지 나빠질 수 있다.)
-
-### Node 클래스
+- Node 클래스
 
 ```js
 class Node {
-    constructor(value) {
-        this.value = value;
-        this.left = null;
+    constructor(value){
+        this.value = value; 
+        this.left = null; 
         this.right = null;
     }
 }
 ```
 
-* 각 노드는 `value`, `left`, `right` 속성을 가진다.
-* 처음 생성될 때는 자식 노드가 없으므로 `null`.
-
-### BinarySearchTree 클래스
-
+- BinarySearchTree 클래스
 ```js
 class BinarySearchTree {
-    constructor() {
-        this.root = null; // 트리의 시작점
+    constructor(){
+        this.root = null; // 트리 가장 상단에 있는 노드
     }
 
-    // 값 삽입
+  // 값 삽입
     insert(value) {
         var newNode = new Node(value);
         if (this.root === null) {
@@ -122,13 +90,8 @@ class BinarySearchTree {
         return false;
     }
 }
-```
+}
 
----
-
-# 🌰 사용 예제
-
-```js
 //      10
 //   5     13
 // 2  7  11  16
@@ -147,7 +110,12 @@ console.log(tree.find(13));     // Node { value: 13, left: Node(11), right: Node
 console.log(tree.find(100));    // undefined
 ```
 
----
+### BST의 장점
+
+* 데이터를 정렬된 형태로 유지
+* 검색, 삽입, 삭제가 평균적으로 **O(log N)** 의 시간 복잡도  
+  but 트리가 한쪽으로 기울어진 경우엔 O(N)까지 나빠질 수 있음
+
 
 ### 정리 요약
 
@@ -157,10 +125,5 @@ console.log(tree.find(100));    // undefined
 | `find(value)`     | 노드 탐색      | O(log N) (평균) |
 | `contains(value)` | 특정 값 존재 여부 | O(log N) (평균) |
 
-
-### 추가
-
-* **균형 잡힌 트리(balanced tree)** 일수록 탐색 효율이 좋다.
-  → 높이가 `log₂N` 에 가까울수록 이상적.
-* **한쪽으로 치우친 트리(skewed tree)** 가 되면
-  사실상 **연결 리스트처럼 동작**하게 된다.
+균형 잡힌 트리일수록 탐색 효율이 좋음
+즉 한쪽으로 치우친 트리(skewed tree)가 되면 사실상 연결 리스트처럼 동작함
