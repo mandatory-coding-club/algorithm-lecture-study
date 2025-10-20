@@ -32,8 +32,8 @@ class Stack
     }
     pop()
     {
-        let res = this.first;
         if(!this.first) return undefined;
+        let res = this.first;
         if(this.length === 1)
         {
             this.first = null;

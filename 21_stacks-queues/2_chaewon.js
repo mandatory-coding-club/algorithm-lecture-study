@@ -39,9 +39,10 @@ class Queue
     //shift
     dequeue()
     {
-        let res = this.first;
         if(!this.first) return undefined;
-        else if(this.length === 1)
+        let res = this.first;
+        
+        if(this.length === 1)
         {
             this.first = null;
             this.last = null;
