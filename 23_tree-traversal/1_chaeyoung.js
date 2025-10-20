@@ -26,7 +26,7 @@ class BinarySearchTree {
           return this;
         }
         current = current.left;
-      } else {
+      } else if (val > current.val) {
         if (!current.right) {
           current.right = newNode;
           return this;
