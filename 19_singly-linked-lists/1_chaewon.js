@@ -101,7 +101,7 @@ class SingleLinkedList
     //해당 index에 있는 원소를 반환
     get(index)
     {
-        if(index > this.length) return false;
+        if(index < 0 || index >= this.length) return false;
         let count = 0;
         let current = this.head;
         while(count !== index)
@@ -115,7 +115,7 @@ class SingleLinkedList
     //해당 index에 있는 val 수정
     set(index, val)
     {
-        if(index > this.length) return false;
+        if(index < 0 || index >= this.length) return false;
         let current = this.get(index);
         if(!current) return null;
         current.val = val;
@@ -149,6 +149,8 @@ class SingleLinkedList
 
         let preNode = this.get(index - 1);
         preNode.next = preNode.next.next;
+
+        this.length --;
 
         return true;
     }
