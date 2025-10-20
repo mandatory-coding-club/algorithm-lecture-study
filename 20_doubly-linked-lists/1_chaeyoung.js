@@ -64,7 +64,7 @@ class DoublyLinkedList {
   //맨 앞의 노드 제거 후 반환
   // length===1 -> head, tail null
   shift() {
-    if (!this.head) undefined;
+    if (!this.head) return undefined;
 
     const oldHead = this.head;
 
@@ -120,7 +120,7 @@ class DoublyLinkedList {
         count++;
       }
     } else {
-      count = this.length;
+      count = this.length - 1;
       current = this.tail;
       while (count != index) {
         current = current.prev;
@@ -135,9 +135,9 @@ class DoublyLinkedList {
   // 해당 노드의 val 변경
   // 성공시 true / 없음 false
   set(index, val) {
-    const setNode = get(index);
+    const setNode = this.get(index);
 
-    if (!setNode) {
+    if (setNode) {
       setNode.val = val;
       return true;
     }
@@ -161,6 +161,7 @@ class DoublyLinkedList {
     newNode.next = afterNode;
     afterNode.prev = newNode;
 
+    this.length++;
     return this;
   }
 
@@ -172,7 +173,7 @@ class DoublyLinkedList {
     if (index === 0) return this.shift();
     if (index === this.length - 1) return this.pop();
 
-    const removedNode = get(index);
+    const removedNode = this.get(index);
 
     removedNode.prev.next = removedNode.next;
     removedNode.next.prev = removedNode.prev;
