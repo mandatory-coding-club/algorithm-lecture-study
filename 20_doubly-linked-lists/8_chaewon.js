@@ -121,16 +121,17 @@ class DoublyLinkedList
     }
     insert(index, val)
     {
-        if(index < 0 || index > this.length) return false;
+        if(index < 0 || index >= this.length) return false;
 
         let newNode = new Node(val);
-        let current = this.get(index);
+        let current = this.get(index - 1);
 
-        current.next.prev = newNode;
+        newNode.prev = current;
         newNode.next = current.next;
 
         current.next = newNode;
-        newNode.prev = current;
+        newNode.next.prev = newNode;
+        
         this.length++;
         return true;
     }

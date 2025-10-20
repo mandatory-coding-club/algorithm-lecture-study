@@ -57,8 +57,8 @@ class DoublyLinkedList
     }
     shift()
     {
-        let res = this.head;
         if(this.length === 0) return undefined;
+        let res = this.head;
         if(this.length === 1)
         {
             this.head = null;
