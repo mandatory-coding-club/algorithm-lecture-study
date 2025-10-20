@@ -148,7 +148,9 @@ class SingleLinkedList
         if(index === this.length - 1) return !!this.pop();
 
         let preNode = this.get(index - 1);
+        let removeNode = preNode.next
         preNode.next = preNode.next.next;
+        removeNode.next = null;
 
         this.length --;
 
