@@ -1,30 +1,3 @@
-# 이진 탐색 트리 (Binary Search Tree)
-**이진 탐색 트리(Binary Search Tree, BST)** 는 각 노드가 최대 두 개의 자식 노드를 가짐  
-왼쪽은 **작은 값**, 오른쪽은 **큰 값**이 위치하도록 구성된 트리 구조
-
-- Node 클래스
-
-```js
-class Node {
-    constructor(value){
-        this.value = value; 
-        this.left = null; 
-        this.right = null;
-    }
-}
-```
-
-- BinarySearchTree 클래스
-```js
-class BinarySearchTree {
-    constructor(){
-        this.root = null; // 트리 가장 상단에 있는 노드
-    }
-    ...
-}
-```
-
-<br><br><br>
 # 트리 순회 (Tree Traversal)
 
 트리를 탐색하는 방식에는 크게  
@@ -105,6 +78,7 @@ DFSInOrder(){
 }
 ```
 <br> 
+
 ### 정리
 트리 구조가 다음과 같을때
 
