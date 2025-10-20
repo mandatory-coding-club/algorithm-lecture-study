@@ -29,6 +29,7 @@ class BinarySearchTree {
 
     if (!this.root) {
       this.root = newNode;
+      return this;
     }
 
     let currentNode = this.root;
@@ -64,8 +65,6 @@ class BinarySearchTree {
         currentNode = currentNode.left;
       } else if (value > currentNode.value) {
         currentNode = currentNode.right;
-      } else {
-        return currentNode;
       }
     }
 
@@ -84,8 +83,6 @@ class BinarySearchTree {
         currentNode = currentNode.left;
       } else if (value > currentNode.value) {
         currentNode = currentNode.right;
-      } else {
-        return true;
       }
     }
 
