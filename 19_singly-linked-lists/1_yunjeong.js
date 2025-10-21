@@ -148,6 +148,25 @@ class SinglyLinkedList {
     return true;
   }
 
+  // remove
+  // 1. index 유효성 확인
+  // 2. index 0이면 shift, length - 1이면 pop
+  // 3. get 메서드 활용해 index - 1 노드 가져오기
+  // 4. 이전 인덱스 노드.next에 삭제되는 노드.next 연결
+  // 5. 길이 1만큼 감소 후, 삭제되는 노드 반환
+  remove(index) {
+    if (index < 0 || index > this.length - 1) return undefined;
+    if (index === 0) return this.shift();
+    if (index === this.length - 1) return this.pop();
+
+    let prevNode = this.get(index - 1);
+    let removedNode = prevNode.next;
+    prevNode.next = removedNode.next;
+    this.length--;
+
+    return removedNode;
+  }
+
   // reverse
   // 1. head와 tail 교환
   // 2. head부터 시작해 리스트 길이만큼 순회하면서 방향 역전
