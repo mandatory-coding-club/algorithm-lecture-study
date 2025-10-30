@@ -59,8 +59,8 @@ class MaxBinaryHeap
         {
             let element = this.values[idx];
 
-            let leftChildIdx = idx + 1;
-            let rightChildIdx = idx + 2;
+            let leftChildIdx = idx * 2 + 1;
+            let rightChildIdx = idx * 2 + 2;
 
             let swap = null;
 
