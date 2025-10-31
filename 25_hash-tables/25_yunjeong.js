@@ -11,10 +11,11 @@ class HashTable {
   _hash(key) {
     let total = 0;
     let WEIRD_PRIME = 3;
+    let length = this.keyMap.length;
     for(let i = 0; i < Math.min(100, key.length); i++) {
       let char = key[i];
       let value = char.charCodeAt(0) - 96;
-      total = (total * WEIRD_PRIME + value) % this.keyMap.length;
+      total = (total * WEIRD_PRIME + value) % length;
     }
     return total;
   }
@@ -69,3 +70,19 @@ class HashTable {
     return valueArr;
   }
 }
+
+let ht = new HashTable(17);
+ht.set("maroon","#800000")
+ht.set("yellow","#FFFF00")
+ht.set("olive","#808000")
+ht.set("salmon","#FA8072")
+ht.set("lightcoral","#F08080")
+ht.set("mediumvioletred","#C71585")
+ht.set("plum","#DDA0DD")
+ht.set("purple","#DDA0DD")
+ht.set("violet","#DDA0DD")
+
+
+ht.keys().forEach(function(key){
+  console.log(ht.get(key));
+})
