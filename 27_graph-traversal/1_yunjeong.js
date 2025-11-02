@@ -1,5 +1,6 @@
-// 깊이 우선 탐색 구현
-// 1. 재귀적 구현 2. 반복형 구현
+// 1. 깊이 우선 탐색 구현
+// 1-1. 재귀적 구현 1-2. 반복형 구현
+// 2. 너비 우선 탐색 구현
 class Graph {
   constructor() {
     this.adjacencyList = {};
@@ -25,7 +26,7 @@ class Graph {
     }
     delete this.adjacencyList[vertex];
   }
-  // 재귀적 구현
+  // 깊이 우선 탐색 - 재귀적 구현
   // 1. 방문 노드를 담을 visited 배열, 결과를 담을 result 배열 선언
   // 2. 해당 노드의 인접리스트를 돌면서 visited를 true로 바꿔주는 헬퍼 함수 선언 
   // 3. start 노드부터 시작
@@ -45,7 +46,7 @@ class Graph {
 
     return result;
   }
-  // 반복형 구현
+  // 깊이 우선 탐색 - 반복형 구현
   // - stack 형식으로 구현
   // 1. 재귀적 구현과 비슷하지만, 방문할 노드들을 차례로 저장할 stack 배열 함께 생성
   // 2. stack에서 pop() 함수로 노드를 차례로 꺼내와 visited 처리 및 result에 저장
@@ -71,6 +72,31 @@ class Graph {
     
     return result;
   }
+  // 너비 우선 탐색
+  // 깊이 우선 탐색의 반복형 구현을 재활용
+  // stack 대신 queue를 이용하여 구현
+  // 1. 방문할 노드들을 차례로 저장할 queue 배열 함께 생성
+  // 2. queue에서 shift() 함수로 노드를 차례로 꺼내와 visited 처리 및 result에 저장
+  // 3. 해당 노드의 인접리스트를 순회
+  // 4. stack 배열에 저장
+  breadthFirstSearch(start) {
+    let queue = [start], result = [], visited = {};
+    visited[start] = true;
+    
+    while(queue.length) {
+      let currentNode = queue.shift();
+      result.push(currentNode);
+      if (this.adjacencyList[currentNode]) {
+        this.adjacencyList[currentNode].forEach(adjacencyNode => {
+          if (!visited[adjacencyNode]) {
+            visited[adjacencyNode] = true;
+            queue.push(adjacencyNode);
+          }
+        });
+      }
+    }
+    return result;
+  }
 }
 
 let g = new Graph();
@@ -92,3 +118,4 @@ g.addEdge("E", "F")
 
 g.depthFirstSearchRecursive("A"); // ['A', 'B', 'D', 'E', 'C', 'F']
 g.depthFirstSearchIterative("A"); // ['A', 'C', 'E', 'F', 'D', 'B']
+g.breadthFirstSearch("A"); // ['A', 'B', 'C', 'D', 'E', 'F']
