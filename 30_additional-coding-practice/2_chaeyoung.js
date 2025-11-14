@@ -10,15 +10,23 @@ function countZeroes(arr) {
   let right = arr.length - 1;
   while (left <= right) {
     let mid = Math.floor((left + right) / 2);
-    if (arr[mid] === 1) {
-      if (arr[mid + 1] === 0 || mid === arr.length - 1)
-        return arr.length - 1 - mid;
-      left = mid + 1;
-    } else {
-      if (arr[mid - 1] === 1 || mid === 0) return arr.length - mid;
-      right = mid - 1;
-    }
+    // if (arr[mid] === 1) {
+    //   if (arr[mid + 1] === 0 || mid === arr.length - 1)
+    //     return arr.length - 1 - mid;
+    //   left = mid + 1;
+    // } else {
+    //   if (arr[mid - 1] === 1 || mid === 0) return arr.length - mid;
+    //   right = mid - 1;
+    // }
+
+    // 루프 끝나고 처리하는걸로 간단하게 변경
+    // 루프가 끝나는 조건 left = right 일때 mid=left=right임
+    // 이때 값이 1이면 0은 +1의 index에 위치하게 됨
+    // 이때 값이 0이면 0은 -1의 index에 위치하게 됨
+    if (arr[mid] === 1) left = mid + 1;
+    else right = mid - 1;
   }
+  return arr.length - left;
 }
 
 console.log(countZeroes([1, 1, 1, 1, 0, 0])); // 2
