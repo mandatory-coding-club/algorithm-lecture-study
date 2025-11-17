@@ -44,47 +44,67 @@ function countZeroes(arr) {
 // solution 1
 // num이 있는 first 위치와 last 위치를 찾기
 // num과 크기 비교해서 위치 유추
-function sortedFrequency(arr, num) {
-  function findFisrt() {
-    let left = 0;
-    let right = arr.length - 1;
-    while (left <= right) {
-      let mid = Math.floor((left + right) / 2);
-      if (arr[mid] < num) left = mid + 1;
-      else if (arr[mid] > num) right = mid - 1;
-      else {
-        if (mid === 0 || arr[mid - 1] !== num) return mid;
-        right = mid - 1;
-      }
-    }
-    return -1;
-  }
+// function sortedFrequency(arr, num) {
+//   function findFisrt() {
+//     let left = 0;
+//     let right = arr.length - 1;
+//     while (left <= right) {
+//       let mid = Math.floor((left + right) / 2);
+//       if (arr[mid] < num) left = mid + 1;
+//       else if (arr[mid] > num) right = mid - 1;
+//       else {
+//         if (mid === 0 || arr[mid - 1] !== num) return mid;
+//         right = mid - 1;
+//       }
+//     }
+//     return -1;
+//   }
 
-  function findLast() {
-    let left = 0;
-    let right = arr.length - 1;
-    while (left <= right) {
-      let mid = Math.floor((left + right) / 2);
-      if (arr[mid] < num) left = mid + 1;
-      else if (arr[mid] > num) right = mid - 1;
-      else {
-        if (mid === arr.length - 1 || arr[mid + 1] !== num) return mid;
-        left = mid + 1;
-      }
-    }
-    return -1;
-  }
+//   function findLast() {
+//     let left = 0;
+//     let right = arr.length - 1;
+//     while (left <= right) {
+//       let mid = Math.floor((left + right) / 2);
+//       if (arr[mid] < num) left = mid + 1;
+//       else if (arr[mid] > num) right = mid - 1;
+//       else {
+//         if (mid === arr.length - 1 || arr[mid + 1] !== num) return mid;
+//         left = mid + 1;
+//       }
+//     }
+//     return -1;
+//   }
 
-  let first = findFisrt();
-  let last = findLast();
+//   let first = findFisrt();
+//   let last = findLast();
 
-  if (first === -1 || last === -1) return -1;
+//   if (first === -1 || last === -1) return -1;
 
-  return last - first + 1;
-}
+//   return last - first + 1;
+// }
 
 // solution 2
-// num을 찾고, 양 옆으로 확장(선형)하기
+// first num을 찾고, 오른쪽으로 확장하기
+function sortedFrequency(arr, num) {
+  let left = 0;
+  let right = arr.length - 1;
+
+  while (left <= right) {
+    let mid = Math.floor((left + right) / 2);
+    if (arr[mid] < num) left = mid + 1;
+    else if (arr[mid] > num) right = mid - 1;
+    else right = mid - 1;
+  }
+
+  if (left >= arr.length || arr[left] !== num) return -1;
+
+  right = left;
+  for (let i = 0; i < arr.length - left; i++) {
+    if (arr[left + i] !== num) break;
+    right = left + i;
+  }
+  return right - left + 1;
+}
 
 console.log(sortedFrequency([1, 1, 2, 2, 2, 2, 3], 2)); // 4
 console.log(sortedFrequency([1, 1, 2, 2, 2, 2, 3], 3)); // 1
