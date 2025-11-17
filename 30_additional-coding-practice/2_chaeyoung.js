@@ -29,24 +29,67 @@ function countZeroes(arr) {
   return arr.length - left;
 }
 
-console.log(countZeroes([1, 1, 1, 1, 0, 0])); // 2
-console.log(countZeroes([1, 1, 1, 1, 1, 0, 0])); // 2
-console.log(countZeroes([1, 0, 0, 0, 0])); // 4
-console.log(countZeroes([1, 0, 0, 0, 0, 0])); // 5
-console.log(countZeroes([0, 0, 0])); // 3
-console.log(countZeroes([1, 1, 1, 1])); // 0
+// console.log(countZeroes([1, 1, 1, 1, 0, 0])); // 2
+// console.log(countZeroes([1, 1, 1, 1, 1, 0, 0])); // 2
+// console.log(countZeroes([1, 0, 0, 0, 0])); // 4
+// console.log(countZeroes([1, 0, 0, 0, 0, 0])); // 5
+// console.log(countZeroes([0, 0, 0])); // 3
+// console.log(countZeroes([1, 1, 1, 1])); // 0
 // Time Complexity - O(log n)
 
 // 2.
 // Divide and Conquer (편 가르고 정복하라) - sortedFrequency
 // 정렬된 배열과 숫자가 주어졌을 때, 배열에서 해당 숫자의 발생 횟수를 세는 sortedFrequency라는 함수를 작성합니다.
 
-// 예시
+// solution 1
+// num이 있는 first 위치와 last 위치를 찾기
+// num과 크기 비교해서 위치 유추
+function sortedFrequency(arr, num) {
+  function findFisrt() {
+    let left = 0;
+    let right = arr.length - 1;
+    while (left <= right) {
+      let mid = Math.floor((left + right) / 2);
+      if (arr[mid] < num) left = mid + 1;
+      else if (arr[mid] > num) right = mid - 1;
+      else {
+        if (mid === 0 || arr[mid - 1] !== num) return mid;
+        right = mid - 1;
+      }
+    }
+    return -1;
+  }
 
-// sortedFrequency([1,1,2,2,2,2,3],2) // 4
-// sortedFrequency([1,1,2,2,2,2,3],3) // 1
-// sortedFrequency([1,1,2,2,2,2,3],1) // 2
-// sortedFrequency([1,1,2,2,2,2,3],4) // -1
+  function findLast() {
+    let left = 0;
+    let right = arr.length - 1;
+    while (left <= right) {
+      let mid = Math.floor((left + right) / 2);
+      if (arr[mid] < num) left = mid + 1;
+      else if (arr[mid] > num) right = mid - 1;
+      else {
+        if (mid === arr.length - 1 || arr[mid + 1] !== num) return mid;
+        left = mid + 1;
+      }
+    }
+    return -1;
+  }
+
+  let first = findFisrt();
+  let last = findLast();
+
+  if (first === -1 || last === -1) return -1;
+
+  return last - first + 1;
+}
+
+// solution 2
+// num을 찾고, 양 옆으로 확장(선형)하기
+
+console.log(sortedFrequency([1, 1, 2, 2, 2, 2, 3], 2)); // 4
+console.log(sortedFrequency([1, 1, 2, 2, 2, 2, 3], 3)); // 1
+console.log(sortedFrequency([1, 1, 2, 2, 2, 2, 3], 1)); // 2
+console.log(sortedFrequency([1, 1, 2, 2, 2, 2, 3], 4)); // -1
 // Time Complexity - O(log n)
 
 // 3.
