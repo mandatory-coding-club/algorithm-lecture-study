@@ -106,10 +106,10 @@ function sortedFrequency(arr, num) {
   return right - left + 1;
 }
 
-console.log(sortedFrequency([1, 1, 2, 2, 2, 2, 3], 2)); // 4
-console.log(sortedFrequency([1, 1, 2, 2, 2, 2, 3], 3)); // 1
-console.log(sortedFrequency([1, 1, 2, 2, 2, 2, 3], 1)); // 2
-console.log(sortedFrequency([1, 1, 2, 2, 2, 2, 3], 4)); // -1
+// console.log(sortedFrequency([1, 1, 2, 2, 2, 2, 3], 2)); // 4
+// console.log(sortedFrequency([1, 1, 2, 2, 2, 2, 3], 3)); // 1
+// console.log(sortedFrequency([1, 1, 2, 2, 2, 2, 3], 1)); // 2
+// console.log(sortedFrequency([1, 1, 2, 2, 2, 2, 3], 4)); // -1
 // Time Complexity - O(log n)
 
 // 3.
@@ -117,14 +117,35 @@ console.log(sortedFrequency([1, 1, 2, 2, 2, 2, 3], 4)); // -1
 // 정렬된 숫자와 정수의 회전된 배열을 받아들이는 findRotatedIndex 라는 함수를 작성합니다. 이 함수는 배열에 있는 정수의 인덱스를 반환해야 합니다. 값을 찾을 수 없으면 -1을 반환합니다.
 
 // 제약조건:
-
 // Time Complexity - O(log n)
-
 // Space Complexity - O(1)
 
-// findRotatedIndex([3,4,1,2],4) // 1
-// findRotatedIndex([6, 7, 8, 9, 1, 2, 3, 4], 8) // 2
-// findRotatedIndex([6, 7, 8, 9, 1, 2, 3, 4], 3) // 6
-// findRotatedIndex([37,44,66,102,10,22],14) // -1
-// findRotatedIndex([6, 7, 8, 9, 1, 2, 3, 4], 12) // -1
-// findRotatedIndex([11,12,13,14,15,16,3,5,7,9], 16) // 5
+// 1. 정렬된 구간 찾기 -> arr[left] < arr[mid] < arr[right]
+// 정렬된 왼쪽에 있는 경우, 정렬된 오른쪽에 있는 경우
+function findRotatedIndex(arr, num) {
+  let left = 0;
+  let right = arr.length - 1;
+
+  while (left <= right) {
+    let mid = Math.floor((left + right) / 2);
+    if (arr[mid] === num) return mid;
+
+    // 정렬된 부분 찾는 조건문에 = 안해서 무한루프 빠졌었음!
+    if (arr[left] <= arr[mid]) {
+      if (arr[left] <= num && num <= arr[mid]) right = mid - 1;
+      else left = mid + 1;
+    }
+    if (arr[mid] <= arr[right]) {
+      if (arr[mid] <= num && num <= arr[right]) left = mid + 1;
+      else right = mid - 1;
+    }
+  }
+  return -1;
+}
+
+console.log(findRotatedIndex([3, 4, 1, 2], 4)); // 1
+console.log(findRotatedIndex([6, 7, 8, 9, 1, 2, 3, 4], 8)); // 2
+console.log(findRotatedIndex([6, 7, 8, 9, 1, 2, 3, 4], 3)); // 6
+console.log(findRotatedIndex([37, 44, 66, 102, 10, 22], 14)); // -1
+console.log(findRotatedIndex([6, 7, 8, 9, 1, 2, 3, 4], 12)); // -1
+console.log(findRotatedIndex([11, 12, 13, 14, 15, 16, 3, 5, 7, 9], 16)); // 5
